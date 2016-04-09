@@ -2,3 +2,6 @@
 	margin: 0 auto;
 	max-width: 300px;
 }
+.table a {
+	text-decoration: none;
+}

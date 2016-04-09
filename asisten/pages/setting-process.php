@@ -4,7 +4,8 @@ include '../config.php';
 if (isset($_POST['submit'])) {
 	$old_password = $_POST['old-password'];
 	$new_password = $_POST['new-password'];
-	
+	$name = $_POST['name'];
+
 	$old_password_md5 = md5($old_password);
 	$new_password_md5 = md5($new_password);
 
@@ -12,14 +13,23 @@ if (isset($_POST['submit'])) {
 	$cek = mysqli_query($connect, "SELECT * FROM asisten WHERE password='$old_password_md5' AND nim='$_SESSION[login]'");
 	$c = mysqli_num_rows($cek);
 
-	if (!$old_password || !$new_password) {
+	if (!$name) {
 		$error = "Data belum lengkap!";
-	} else if ($c == 0) {
+	} else if (!empty($old_password) && $c == 0) {
 		$error = "Password Lama salah!";
+	} else if (!empty($old_password) && empty($new_password)) {
+		$error = "Password Baru belum diisi!";
 	} else {
-		$q = mysqli_query($connect, "UPDATE asisten SET password='$new_password_md5' WHERE nim='$_SESSION[login]'");
+		if (!empty($old_password) && !empty($new_password)) {
+			$change_password = " password='$new_password_md5', ";
+		} else {
+			$change_password = "";
+		}
+
+		$q = mysqli_query($connect, "UPDATE asisten SET $change_password nama='$name' WHERE nim='$_SESSION[login]'");
 		if ($q) {
-			$success = "Password berhasil diubah.";
+			$success = "Data Berhasil diubah.";
+			$_SESSION['login_name'] = $name;
 		} else {
 			$error = "Terjadi kesalahan!";
 		}

@@ -43,6 +43,7 @@ include 'function.php';
 				<ul class="nav navbar-nav navbar-right top-menu">
 					<li><a href="index.php">Upload</a></li>
 					<li><a href="index.php?page=list">List</a></li>
+					<li><a href="asisten">Login</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div>
@@ -74,11 +75,11 @@ include 'function.php';
 					</div>
 					<div class="panel-body">
 						<?php 
-						$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+						$page = isset($_GET['page']) ? $_GET['page'] : 'upload';
 						if (file_exists("pages/".$page.".php")) {
-							if ($page == 'home' && count($kelas) > 0) {
+							if ($page == 'upload' && count($kelas) > 0) {
 								include 'pages/'.$page.'.php';
-							} else if ($page != 'home') {
+							} else if ($page != 'upload') {
 								include 'pages/'.$page.'.php';
 							} else {
 								echo "<p align='center'>Anda belum dapat mengunggah tugas.</p>";
