@@ -76,7 +76,13 @@ include 'function.php';
 						<?php 
 						$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 						if (file_exists("pages/".$page.".php")) {
-							include 'pages/'.$page.'.php';
+							if ($page == 'home' && count($kelas) > 0) {
+								include 'pages/'.$page.'.php';
+							} else if ($page != 'home') {
+								include 'pages/'.$page.'.php';
+							} else {
+								echo "<p align='center'>Anda belum dapat mengunggah tugas.</p>";
+							}
 						} else {
 							echo "<h1 align='center'>Error 404 Not Found</h1>";
 							echo "<p align='center'>The page you are looking for not found!</p>";

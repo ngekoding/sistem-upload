@@ -43,21 +43,6 @@ if (isset($_POST['submit'])) {
 		}
 	}
 
-	if(isset($error)) {
-	?>
-	<div class="alert alert-danger">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<strong>Gagal!</strong> <?=$error?>
-	</div>
-	<?php
-	}
-
-	if (isset($success)) {
-	?>
-	<div class="alert alert-success">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<strong>Berhasil!</strong> <?=$success?>
-	</div>
-	<?php
-	}
+	@show_error($error);
+	@show_success($success);
 }

@@ -12,4 +12,26 @@ function get_kelas_aktif() {
 	}
 	return $kelas;
 }
+
+function show_error($msg) {
+	if(isset($msg)) {
+	?>
+	<div class="alert alert-danger fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<strong>Gagal!</strong> <?=$msg?>
+	</div>
+	<?php
+	}
+}
+
+function show_success($msg) {
+	if (isset($msg)) {
+	?>
+	<div class="alert alert-success fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<strong>Berhasil!</strong> <?=$msg?>
+	</div>
+	<?php
+	}
+}
 ?>
