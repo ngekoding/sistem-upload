@@ -7,6 +7,10 @@ if (isset($_POST['submit'])) {
 	$file_type = $_FILES['file']['type'];
 	$file_tmp = $_FILES['file']['tmp_name'];
 
+	// Cek apakah sudah mengumpulkan sebelumnya
+	$q = mysqli_query($connect, "SELECT * FROM unggahan WHERE nim='$nim'");
+	$kumpul = mysqli_num_rows($q);
+
 	// Get praktikan kelas --> sesuaikan dengan yang aktif
 	$get = mysqli_query($connect, "SELECT kelas FROM praktikan WHERE nim='$nim'");
 	$c = mysqli_num_rows($get);
@@ -28,6 +32,8 @@ if (isset($_POST['submit'])) {
 		$error = "Tipe file tidak sesuai!";
 	} else if(!in_array($praktikan_kelas, get_kelas_aktif())) {
 		$error = "Sekarang bukan kelas Anda!";
+	} else if($kumpul != 0) {
+		$error = "Anda telah mengumpulkan sebelumnya!";
 	} else {
 		$file_uploaded_name = $dir.$nim.".zip";
 		$upload = move_uploaded_file($file_tmp, $file_uploaded_name);

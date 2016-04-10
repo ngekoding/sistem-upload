@@ -105,6 +105,16 @@ if (!isset($_SESSION['login'])) {
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/custom.js"></script>
-
+    <script>
+    	$(document).ready(function(){
+    		$("#show-all").click(function(){
+    			if($(this).is(":checked")) {
+    				window.location = "index.php?page=unggahan&showall=true";
+    			} else {
+    				window.location = "index.php?page=unggahan";
+    			}
+    		});
+    	});
+    </script>
   </body>
 </html>
