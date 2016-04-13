@@ -101,7 +101,8 @@ if (!isset($_SESSION['login'])) {
 			</div>
 		</div>
 	</div>
-	
+	<p align="center">Copyright &copy; 2016 by <a href="http://facebook.com/about.nurmuhammad" target="_blank">Nur Muhammad</a></p>
+
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/custom.js"></script>
